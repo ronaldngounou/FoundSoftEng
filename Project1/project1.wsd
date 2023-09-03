@@ -1,0 +1,64 @@
+# Project1
+
+
+@startuml
+
+class Vehicle {
+ +color: String
+ +speed: int
+ -Turn_Left(int angle)
+ -Turn_Right(int angle)
+  
+}
+
+
+class Bicycle{
+-numberOfWheels: int
++ringBell()
+}
+
+class MotorVehicle{
++ sizeOfEngine: int
++ licensePlate: int
+
++ get_sizeOfEngine: int
++ set_sizeOfEngine: int
++ get_licensePlate: int
++ set_licensePlate: int
+
+}
+
+class MotorBike{
+- manufacturer: String
+- isTwoSeater: Boolean
+- engineType : String
+
+- get_manufacturer(): String
+- set_manufacturer(): String
+- set_engineType(): String
+- get_engineType(): String
+}
+
+class Car{
+- fuelType: String
+- numDoors: int
+- yearManufacturing: int
+
+- set_fuelType(): String
+- get_fuelType(): String
+- set_numDoors(): int
+- get_numDoors(): int
+- set_yearManufacturing(): int
+- get_yearManufacturing(): int
+}
+
+MotorVehicle --|> Vehicle 
+
+Bicycle  --|> Vehicle 
+
+MotorBike --|> MotorVehicle 
+
+Car --|> MotorVehicle
+
+
+@enduml

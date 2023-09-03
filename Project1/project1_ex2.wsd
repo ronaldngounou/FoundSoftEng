@@ -1,0 +1,37 @@
+@startuml
+
+class Course{
+    students: ArrayList
+    courseLecturer: String
+
+    add_student(int studentID)
+    remove_student(int studentID)
+    assign_teacher(int teacherID)
+    get_listStudents(): ArrayList
+    get_courseLecturer(): String
+}
+
+class Lecturer{
+    teacherID: int
+    coursesTeached: ArrayList
+}
+
+
+class Student{
+    studentID: int 
+    get_studentID(): int 
+}
+
+class Person{
+    name: String
+    getName(): String 
+    getEmailAddress(): String 
+}
+
+Lecturer "1" o-- "n" Course : TaughtBy
+Student "0" o-- "n"  Course : AttendedBy
+Lecturer --|> Person
+Student --|> Person 
+
+
+@enduml
