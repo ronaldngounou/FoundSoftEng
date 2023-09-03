@@ -23,7 +23,7 @@ class Student{
 }
 
 class Person{
-    name: String
+    personName: String
     getName(): String 
     getEmailAddress(): String 
 }
