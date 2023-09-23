@@ -4,27 +4,28 @@
 @startuml
 
 class Vehicle {
- +color: String
- +speed: int
- -Turn_Left(int angle)
- -Turn_Right(int angle)
+ -color: String
+ -speed: int
+
+ +turnLeft(int angle)
+ +turnRight(int angle)
   
 }
 
 
 class Bicycle{
 -numberOfWheels: int
-+ringBell()
+-ringBell: Object 
 }
 
 class MotorVehicle{
-+ sizeOfEngine: int
-+ licensePlate: int
+- sizeOfEngine: int
+- licensePlate: int
 
-+ get_sizeOfEngine: int
-+ set_sizeOfEngine: int
-+ get_licensePlate: int
-+ set_licensePlate: int
++ getSizeOfEngine(): int
++ setSizeOfEngine(int sizeOfEngine)
++ getLicensePlate(): int
++ setLicensePlate(int licensePlate)
 
 }
 
@@ -33,10 +34,10 @@ class MotorBike{
 - isTwoSeater: Boolean
 - engineType : String
 
-- get_manufacturer(): String
-- set_manufacturer(): String
-- set_engineType(): String
-- get_engineType(): String
++ getManufacturer(): String
++ setManufacturer(String manufacturer)
++ setEngineType(String engineType)
++ getEngineType(): String
 }
 
 class Car{
@@ -44,12 +45,12 @@ class Car{
 - numDoors: int
 - yearManufacturing: int
 
-- set_fuelType(): String
-- get_fuelType(): String
-- set_numDoors(): int
-- get_numDoors(): int
-- set_yearManufacturing(): int
-- get_yearManufacturing(): int
++ setFuelType(String fuelType)
++ getFuelType(): String
++ setNumDoors(int numDoors)
++ getNumDoors(): int
++ setYearManufacturing(int yearManufacturing)
++ getYearManufacturing(): int
 }
 
 MotorVehicle --|> Vehicle 

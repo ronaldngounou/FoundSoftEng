@@ -1,0 +1,25 @@
+# PlantUML Editor
+
+@startuml
+
+class People {
+-name: String()  
++get_name(): String  
+  
+}
+
+class Student {
+  ID: int
+  get_ID(): int()
+}
+
+class Course{
+  
+  }
+
+
+People <|-- Student
+Student "1" o-- "10" Course
+
+
+@enduml

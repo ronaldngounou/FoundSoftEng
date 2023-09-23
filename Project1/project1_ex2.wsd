@@ -1,34 +1,44 @@
 @startuml
 
-class Course{
-    students: ArrayList
-    courseLecturer: String
-
-    add_student(int studentID)
-    remove_student(int studentID)
-    assign_teacher(int teacherID)
-    get_listStudents(): ArrayList
-    get_courseLecturer(): String
+class Person{
+    -name: String
+    -email: String
+    +getName(): String 
+    +getEmailAddress(): String 
 }
 
 class Lecturer{
-    teacherID: int
-    coursesTeached: ArrayList
+    -lecturerID: int 
+    -taughtCourses: ArrayList<Course>
+    +getTaughtCourses(): ArrayList<Course>
+    +getLecturerID(): int 
 }
 
+class Course{
+    -courseID: int 
+    -students: ArrayList<Student>
+    -taughtBy: Lecturer
+
+    +getCourseID(): int 
+    +getTeacher(): Lecturer
+    +addStudent(Student student)
+    +removeStudent(int studentID)
+    +assignTeacher(Lecturer lecturer)
+    +getListStudents(): ArrayList<Student>
+   
+    
+}
 
 class Student{
-    studentID: int 
-    get_studentID(): int 
+    -ID: int 
+    -courses: ArrayList<Course>
+    +addCourse(Course course)
+    +getStudentID(): int 
+    
 }
 
-class Person{
-    personName: String
-    getName(): String 
-    getEmailAddress(): String 
-}
 
-Lecturer "1" o-- "n" Course : TaughtBy
+Lecturer "1" *-- "n" Course : taughtBy
 Student "0" o-- "n"  Course : AttendedBy
 Lecturer --|> Person
 Student --|> Person 
