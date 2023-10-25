@@ -1,0 +1,30 @@
+@startuml
+
+Student -> UI : change(name, location, start_time, end_time)
+alt change()
+
+activate UI
+UI -> Calendar : change_appointment()
+alt change_appointment()
+
+activate Calendar 
+Calendar -> Calendar : check_exists()
+activate Calendar
+return success 
+
+return AppointmentChanged
+else some kind of failure of change_appointment() 
+
+Calendar -> Calendar : check_exists()
+activate Calendar 
+return unsuccess 
+else some kind of failure of change()
+return Error: apppointment conflict
+
+deactivate Calendar 
+deactivate Calendar 
+deactivate UI 
+end 
+end
+
+@enduml 

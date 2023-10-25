@@ -1,0 +1,114 @@
+# Project 2
+
+
+@startuml
+
+struct Assignment 
+struct Assessment {
+    -Midterm: Object 
+    -FinalExam: Object 
+}
+
+enum Section {
+    Online
+    Hybrid 
+    Standard
+}
+
+package UDC_People {
+class People{
+    -{static} ID: int 
+    -name: String
+    -email: String
+    +getName(): String 
+    +getEmailAddress(): String 
+}
+
+class Lecturer{
+    -lecturerID: int 
+    -taughtCourses: ArrayList<Course>
+    +getTaughtCourses(): ArrayList<Course>
+    +getLecturerID(): int 
+}
+
+class Student{
+    -ID: int 
+    -courses: ArrayList<Course>
+    +addCourse(Course course)
+    +getStudentID(): int 
+    
+}
+
+}
+
+
+
+
+
+
+namespace Undergraduate {
+    class Course{
+    -courseID: int 
+    -students: ArrayList<Student>
+    -taughtBy: Lecturer
+    -courseAssessment: Assessment
+    -courseAssignment: Assignment
+    -Section_number: Section 
+    +Enroll(c: Course): bool
+    +getCourseID(): int 
+    +getTeacher(): Lecturer
+    +addStudent(Student student)
+    +removeStudent(int studentID)
+    +assignTeacher(Lecturer lecturer)
+    +getListStudents(): ArrayList<Student>
+
+}
+}
+
+namespace Graduate {
+    class Course{
+    -courseID: int 
+    -students: ArrayList<Student>
+    -taughtBy: Lecturer
+    -courseAssessment: Assessment
+    -courseAssignment: Assignment
+    -Section_number: Section 
+    +Enroll(c: Course): bool
+    +getCourseID(): int 
+    +getTeacher(): Lecturer
+    +addStudent(Student student)
+    +removeStudent(int studentID)
+    +assignTeacher(Lecturer lecturer)
+    +getListStudents(): ArrayList<Student>
+
+}
+}
+
+
+
+
+Lecturer "1" *-- "3" Undergraduate : taughtBy
+Lecturer "1" *-- "3" Graduate : taughtBy
+
+
+Student "1" o-- "10"  Undergraduate : takenBy
+Student "1" o-- "10"  Graduate : takenBy
+
+note "A student can take up 10 undegraduate courses." as N 
+Undergraduate .. N 
+
+note "A student can take up 10 graduate courses." as B
+Graduate .. B
+
+
+
+Lecturer --|> People
+Student --|> People
+Section o-- Graduate 
+Section o-- Undergraduate
+
+
+Assessment o-- Student 
+Assignment o-- Student 
+
+@enduml

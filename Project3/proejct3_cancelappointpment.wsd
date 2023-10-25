@@ -1,0 +1,31 @@
+@startuml
+
+Student -> UI : cancel()
+alt delete()
+
+
+activate UI
+UI -> Calendar : cancel_appointment(time)
+alt cancel_appointment()
+activate Calendar 
+Calendar -> Calendar : check_time_exists()
+activate Calendar 
+
+
+return success_delete 
+return AppointmentDeleted
+else some kind of failure of cancel_appointment()
+
+Calendar -> Calendar : check_time_exists()
+activate Calendar 
+
+return unsuccess_delete
+else some kind of failure of cancel()
+return FailureDeletingAppointment
+deactivate Calendar 
+deactivate Calendar 
+deactivate UI 
+end
+
+
+@enduml 

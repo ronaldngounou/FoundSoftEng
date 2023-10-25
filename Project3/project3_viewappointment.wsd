@@ -1,0 +1,21 @@
+@startuml
+
+Student -> UI : view()
+
+
+activate UI
+UI -> Calendar : view_appointment()
+
+
+
+activate Calendar 
+
+return ListAppointments
+
+return dislay appointments
+
+deactivate Calendar 
+
+
+deactivate UI 
+@enduml 

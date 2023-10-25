@@ -1,0 +1,72 @@
+@startuml
+
+class Person{
+    -name: String
+    -email: String
+    +getName(): String 
+    +getEmailAddress(): String 
+}
+
+class Lecturer{
+    -lecturerID: int
+    -taughtCourses: ArrayList<Course>
+    +addAppointment(startTime, endTime): Boolean
+    +changeAppointment(startTime, endTime): Boolean 
+    +cancelAppointment(): Boolean 
+    +viewAppointment(): Boolean
+    +getTaughtCourses(): ArrayList<Course>
+    +getLecturerID(): int 
+}
+
+class Course{
+    -courseID: int 
+    -students: ArrayList<Student>
+    -taughtBy: Lecturer
+
+    +getCourseID(): int 
+    +getTeacher(): Lecturer
+    +addStudent(Student student)
+    +removeStudent(int studentID)
+    +assignTeacher(Lecturer lecturer)
+    +getListStudents(): ArrayList<Student>
+   
+    
+}
+
+class Student{
+    -ID: int 
+    -courses: ArrayList<Course>
+    +addAppointment(startTime, endTime): Boolean
+    +changeAppointment(startTime, endTime): Boolean 
+    +cancelAppointment(): Boolean 
+    +viewAppointment(): Boolean
+    +addCourse(Course course)
+    +getStudentID(): int 
+    
+}
+
+class UI{
+    - Name: String 
+    - Location: String 
+    - startTime: Time 
+    - endTime: Time 
+    + add(startTime, endTime): Boolean 
+    + cancel(): Boolean 
+    + change(startTime, endTime): Boolean
+    + view(): Boolean
+}
+
+
+
+
+
+Lecturer "1" *-- "n" Course : taughtBy
+Student "0" o-- "n"  Course : AttendedBy
+Lecturer --|> Person
+Student --|> Person 
+Lecturer o-- UI  
+Student o-- UI 
+
+
+
+@enduml

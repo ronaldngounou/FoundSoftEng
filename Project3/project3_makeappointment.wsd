@@ -1,0 +1,30 @@
+@startuml
+
+Student -> UI : add_new_appointment(name, location, start_time, end_time)
+alt add()
+
+activate UI
+UI -> Calendar : make_appointment()
+alt make_appointment()
+
+activate Calendar 
+Calendar -> Calendar : check_conflict()
+activate Calendar
+return success 
+
+return Added to the ListofAppointments
+else some kind of failure of make_appointment() 
+
+Calendar -> Calendar : check_conflict()
+activate Calendar 
+return unsuccess 
+else some kind of failure of add()
+return Conflict with another appointment
+
+deactivate Calendar 
+deactivate Calendar 
+deactivate UI 
+end 
+end
+
+@enduml 
